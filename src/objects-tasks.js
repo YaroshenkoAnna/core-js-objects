@@ -33,20 +33,8 @@ function shallowCopy(obj) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(objects) {
-  return objects.length
-    ? Object.fromEntries(
-        Object.entries(
-          objects
-            .map(Object.entries)
-            .flat()
-            .reduce((acc, [key, value]) => {
-              acc[key] = (acc[key] || 0) + value;
-              return acc;
-            }, {})
-        )
-      )
-    : {};
+function mergeObjects(/* objects */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -265,8 +253,10 @@ function fromJSON(proto, json) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return [...arr].sort(
+    (a, b) => a.country.localeCompare(b.country) || a.city.localeCompare(b.city)
+  );
 }
 
 /**
